@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orlando & Eva - Nuestra Boda</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      color: #fff;
+      background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('imagenes/boda.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    section {
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background-image: inherit;
+    }
+
+    .hero h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 80px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .hero h2 {
+      font-size: 28px;
+      font-weight: 300;
+      animation: fadeIn 2.5s ease-in-out;
+    }
+
+    h3 {
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+
+    blockquote {
+      font-style: italic;
+      font-size: 22px;
+      max-width: 600px;
+      margin: 0 auto 50px;
+      line-height: 1.6;
+    }
+
+    #countdown {
+      font-size: 28px;
+      font-weight: bold;
+      background-color: rgba(0, 77, 64, 0.85);
+      padding: 18px 30px;
+      border-radius: 12px;
+      display: inline-block;
+      animation: pulse 2s infinite;
+      margin-top: 30px;
+    }
+
+    .schedule ul {
+      list-style: none;
+      padding: 0;
+      font-size: 20px;
+    }
+
+    .schedule li {
+      margin: 12px 0;
+    }
+
+    .maps-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .map-item {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .map-item p {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    #map, #map-ceremonia {
+      height: 280px;
+      border-radius: 10px;
+      border: 2px solid #ffffffa8;
+      margin-bottom: 10px;
+    }
+
+    .maps-button, .rsvp button {
+      background-color: #004d40;
+      color: white;
+      padding: 14px 26px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .maps-button:hover, .rsvp button:hover {
+      background-color: #00695c;
+      transform: scale(1.05);
+    }
+
+    .rsvp {
+      margin-top: 60px;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 60px; }
+      .hero h2 { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <h1>Orlando & Eva</h1>
+    <h2>¡Nos casamos!</h2>
+  </section>
+
+  <section>
+    <blockquote>
+      “Todos somos mortales, hasta el primer beso y la segunda copa de vino”
+    </blockquote>
+    <div id="countdown"></div>
+  </section>
+
+  <section>
+    <h3>Detalles de la boda</h3>
+    <p><strong>Fecha:</strong> 21 de junio de 2025</p>
+    <p><strong>Lugar de la ceremonia:</strong> Iglesia de la Natividad de Nuestra Señora, Monreal del Campo</p>
+    <p><strong>Celebración:</strong> Huerta Molino Bajo</p>
+  </section>
+
+  <section>
+    <h3>Horario</h3>
+    <div class="schedule">
+      <ul>
+        <li><strong>12:30</strong> - Ceremonia religiosa</li>
+        <li><strong>14:00</strong> - Cóctel</li>
+        <li><strong>16:00</strong> - Comida</li>
+        <li><strong>18:00</strong> - Baile</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h3>¿Cómo llegar?</h3>
+    <div class="maps-container">
+      <div class="map-item">
+        <p><strong>Iglesia de la Natividad</strong><br />Coordenadas: 40.790430, -1.353584</p>
+        <div id="map"></div>
+        <a href="https://maps.app.goo.gl/XnP5izdBn33TCUHt7" class="maps-button" target="_blank">Cómo llegar</a>
+      </div>
+
+      <div class="map-item">
+        <p><strong>Huerta Molino Bajo</strong><br />Coordenadas: 40.794933, -1.347930</p>
+        <div id="map-ceremonia"></div>
+        <a href="https://maps.app.goo.gl/inCSUdQbwBgvyQ9HA" class="maps-button" target="_blank">Cómo llegar</a>
+      </div>
+    </div>
+  </section>
+  <!-- NUEVA SECCIÓN DEL REGALO -->
+  <section>
+    <h3>¿Un detalle?</h3>
+    <p style="max-width: 600px; margin: 0 auto 20px;">
+      Si te apetece tener un detalle con nosotros, puedes hacerlo escribiéndonos. 💌
+    </p>
+    <button onclick="window.location.href='https://wa.me/34XXXXXXXXX?text=Hola%2C+me+encantar%C3%ADa+tener+los+datos+para+el+regalo+de+la+boda+de+Orlando+y+Eva'" 
+            style="background-color: transparent; border: none; cursor: pointer;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="#fff" viewBox="0 0 24 24">
+        <path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8h16Zm-6-4h5a1 1 0 0 1 1 1v3H4v-3a1 1 0 0 1 1-1h5a2.5 2.5 0 1 1 0-5c1.93 0 2.65 1.53 2.94 2.42.3-.89 1.01-2.42 2.94-2.42a2.5 2.5 0 1 1 0 5ZM9 3.5a1.5 1.5 0 0 0 0 3c.94 0 1.43-.6 2-2-.57-1.4-1.06-1-2-1Zm6 0c-.94 0-1.43.6-2 2 .57 1.4 1.06 1 2 1a1.5 1.5 0 0 0 0-3Z"/>
+      </svg>
+    </button>
+  </section>
+  <section class="rsvp">
+    <button onclick="window.location.href='https://forms.gle/YK35FJHhMhR1a8AJ8'">¡Confirma tu asistencia aquí!</button>
+  </section>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const countdownDate = new Date("Jun 21, 2025 12:00:00").getTime();
+    const countdownEl = document.getElementById("countdown");
+
+    const x = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+
+      if (distance < 0) {
+        clearInterval(x);
+        countdownEl.innerHTML = "¡Es el gran día!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+
+    const map = L.map('map').setView([40.790430, -1.353584], 15);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+    L.marker([40.790430, -1.353584]).addTo(map).bindPopup("Iglesia de la Natividad");
+
+    const map2 = L.map('map-ceremonia').setView([40.794933, -1.347930], 15);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map2);
+    L.marker([40.794933, -1.347930]).addTo(map2).bindPopup("Huerta Molino Bajo");
+  </script>
+</body>
+</html>
