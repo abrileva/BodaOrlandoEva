@@ -3,240 +3,468 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Orlando & Eva - Nuestra Boda</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <title>Orlando & Eva - ¡Nos Casamos!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
+    /* ---------------------------------------------------- */
+    /* ESTILOS GENERALES Y RESETS                         */
+    /* ---------------------------------------------------- */
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      color: #fff;
-      background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('imagenes/boda.jpg');
-      background-size: cover;
-      background-attachment: fixed;
+      font-family: 'Open Sans', sans-serif;
+      color: #222; /* Texto principal en un negro suave */
+      line-height: 1.6;
+      overflow-x: hidden; /* Evitar scroll horizontal */
+
+      /* ¡NUEVOS ESTILOS PARA LA IMAGEN DE FONDO DEL BODY! */
+      background-color: #f8f5f0; /* Fondo blanco roto base */
+      background-image:
+        linear-gradient(rgba(248, 245, 240, 0.9), rgba(248, 245, 240, 0.9)), /* Capa de color blanco roto con alta opacidad para "transparentar" la imagen */
+        url('imagenes/boda_festiva.jpg'); /* **RUTA A TU IMAGEN DE FONDO SUTIL** (florales, texturas, etc.) */
+      background-size: cover; /* Cubrir todo el fondo */
+      background-position: center center; /* Centrar la imagen */
+      background-repeat: no-repeat; /* No repetir la imagen */
+      background-attachment: fixed; /* Para que la imagen de fondo no se mueva con el scroll */
     }
 
-    section {
-      padding: 100px 20px;
-      text-align: center;
+    .container {
+      max-width: 900px; /* Ancho máximo para el contenido principal */
+      margin: 0 auto;
+      padding: 0 20px; /* Padding a los lados para pantallas pequeñas */
     }
 
+    /* ---------------------------------------------------- */
+    /* SECCIÓN PRINCIPAL (HERO)                           */
+    /* ---------------------------------------------------- */
     .hero {
-      height: 100vh;
+      height: 100vh; /* Ocupa toda la altura de la ventana */
       display: flex;
-      align-items: center;
-      justify-content: center;
       flex-direction: column;
-      background-image: inherit;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff; /* Texto blanco para resaltar sobre la imagen */
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1)), /* Sutil gradiente para oscurecer la imagen y mejorar la legibilidad */
+        url('imagenes/encabezado_minimalista.jpg'); /* **IMAGEN CLAVE: Fondo etéreo y luminoso para el HERO** */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      z-index: 1; /* Asegura que el texto esté encima del gradiente */
     }
 
     .hero h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 80px;
-      animation: fadeIn 2s ease-in-out;
+      font-family: 'Great Vibes', cursive; /* ¡Nueva tipografía para los nombres! */
+      font-size: 140px; /* Tamaño grande y elegante */
+      margin-bottom: 20px;
+      color: #87CEEB; /* Azul bebé para los nombres */
+      letter-spacing: 5px;
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Sombra suave para que resalte */
+      animation: fadeInZoom 2s ease-out forwards;
     }
 
     .hero h2 {
-      font-size: 28px;
-      font-weight: 300;
-      animation: fadeIn 2.5s ease-in-out;
+      font-family: 'Lora', serif;
+      font-size: 52px;
+      font-weight: 700;
+      color: #f0f0f0; /* Blanco grisáceo para el subtítulo */
+      letter-spacing: 2px;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      animation: slideInUp 2s ease-out forwards 0.5s;
+      opacity: 0;
+    }
+
+    /* ---------------------------------------------------- */
+    /* SECCIONES DE CONTENIDO (FLUIDAS)                   */
+    /* ---------------------------------------------------- */
+    section {
+      padding: 80px 0; /* Mayor espacio vertical entre secciones */
+      text-align: center;
+      background-color: transparent; /* Fondo completamente transparente */
+      box-shadow: none; /* Sin sombras de caja */
+      border: none; /* Sin bordes */
+      position: relative;
     }
 
     h3 {
-      font-size: 32px;
-      margin-bottom: 30px;
+      font-family: 'Lora', serif;
+      font-size: 48px; /* Títulos de sección grandes y claros */
+      color: #87CEEB; /* Azul bebé para los títulos de sección */
+      margin-bottom: 40px;
+      letter-spacing: 1.5px;
+      position: relative;
     }
 
-    blockquote {
-      font-style: italic;
-      font-size: 22px;
-      max-width: 600px;
-      margin: 0 auto 50px;
-      line-height: 1.6;
+    p {
+      font-size: 19px;
+      max-width: 700px;
+      margin: 0 auto 25px;
+      color: #444; /* Gris oscuro para el texto normal */
     }
 
-    #countdown {
-      font-size: 28px;
-      font-weight: bold;
-      background-color: rgba(0, 77, 64, 0.85);
-      padding: 18px 30px;
-      border-radius: 12px;
-      display: inline-block;
-      animation: pulse 2s infinite;
+    /* ---------------------------------------------------- */
+    /* CUENTA ATRÁS                                       */
+    /* ---------------------------------------------------- */
+    .countdown {
+      font-family: 'Lora', serif;
+      font-size: 56px; /* Aún más grande para el contador */
+      font-weight: 700;
+      color: #87CEEB; /* Azul bebé */
+      padding: 25px 50px;
+      border-radius: 50px; /* Forma de píldora/burbuja */
+      display: inline-block; /* Para centrarlo y aplicar padding */
       margin-top: 30px;
+      border: 3px solid #6A8DAB; /* Azul acento para el borde */
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Sombra para que "flote" */
+      letter-spacing: 2px;
+      transition: all 0.3s ease-in-out;
     }
 
+    .countdown:hover {
+      transform: translateY(-5px) scale(1.02);
+      background-color: rgba(135, 206, 235, 0.05); /* Ligero toque azul al pasar el ratón */
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ---------------------------------------------------- */
+    /* PROGRAMA DEL EVENTO (HORARIO) - ¡CAMBIO AQUÍ!     */
+    /* ---------------------------------------------------- */
     .schedule ul {
       list-style: none;
       padding: 0;
       font-size: 20px;
+      color: #444;
+      display: flex; /* Habilitar Flexbox */
+      justify-content: center; /* Centrar los elementos horizontalmente */
+      flex-wrap: wrap; /* Permitir que los elementos salten de línea en pantallas pequeñas */
+      gap: 30px; /* Espacio entre los elementos */
     }
 
     .schedule li {
-      margin: 12px 0;
-    }
-
-    .maps-container {
+      margin: 0; /* Reiniciar márgenes para que 'gap' funcione correctamente */
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column; /* Icono arriba, texto abajo */
+      align-items: center;
       justify-content: center;
-      gap: 40px;
-      margin-top: 40px;
+      font-weight: 600;
+      color: #444;
+      flex: 1; /* Permitir que los elementos crezcan para ocupar espacio */
+      min-width: 180px; /* Ancho mínimo para cada columna, para evitar que se aplasten */
+      max-width: 30%; /* Limitar ancho para que no ocupen demasiado en pantallas grandes */
     }
 
-    .map-item {
-      width: 100%;
-      max-width: 400px;
+    .schedule li strong {
+        color: #87CEEB; /* Azul bebé para los nombres de los eventos */
+        font-size: 24px;
+        margin-bottom: 5px;
     }
 
-    .map-item p {
-      font-size: 16px;
-      margin-bottom: 8px;
-    }
-
-    #map, #map-ceremonia {
-      height: 280px;
-      border-radius: 10px;
-      border: 2px solid #ffffffa8;
+    .schedule li span {
+      font-size: 48px; /* Tamaño grande para los iconos */
+      color: #6A8DAB; /* Azul acento para los iconos */
       margin-bottom: 10px;
     }
 
-    .maps-button, .rsvp button {
-      background-color: #004d40;
+    /* ---------------------------------------------------- */
+    /* UBICACIONES (SIMPLIFICADAS) - ¡CAMBIO AQUÍ!      */
+    /* ---------------------------------------------------- */
+    .maps .location-container { /* Nuevo contenedor para Flexbox */
+        display: flex;
+        justify-content: center; /* Centrar los elementos horizontalmente */
+        flex-wrap: wrap; /* Permitir que los elementos salten de línea */
+        gap: 40px; /* Espacio entre los elementos de ubicación */
+        max-width: 800px; /* Limitar el ancho para que los botones no se separen demasiado */
+        margin: 0 auto;
+    }
+
+    .location-item { /* Contenedor para cada ubicación */
+      margin-bottom: 0; /* Reiniciar margen, 'gap' lo manejará */
+      flex: 1; /* Permitir que los elementos crezcan */
+      min-width: 280px; /* Ancho mínimo para cada botón de ubicación */
+      max-width: 45%; /* Limitar ancho para que no se separen demasiado */
+      display: flex; /* Para centrar el botón y el texto dentro */
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .location-item p {
+      font-size: 20px;
+      margin-bottom: 25px;
+      color: #444;
+      font-weight: 600;
+    }
+
+    .main-button { /* Clase unificada para todos los botones principales */
+      background: #87CEEB; /* Azul bebé para el fondo del botón */
       color: white;
-      padding: 14px 26px;
-      font-size: 16px;
+      padding: 18px 38px;
+      font-size: 20px;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 6px 15px rgba(135, 206, 235, 0.35); /* Sombra con el tono azul */
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      text-decoration: none; /* Si se usa en <a> */
+      display: inline-block; /* Para padding y márgenes correctos */
     }
 
-    .maps-button:hover, .rsvp button:hover {
-      background-color: #00695c;
-      transform: scale(1.05);
+    .main-button:hover {
+      background-color: #6A8DAB; /* Azul acento al pasar el ratón */
+      transform: translateY(-4px);
+      box-shadow: 0 9px 20px rgba(106, 141, 171, 0.45); /* Sombra con el tono azul acento */
     }
 
+    /* ---------------------------------------------------- */
+    /* CONFIRMACIÓN DE ASISTENCIA (RSVP)                  */
+    /* ---------------------------------------------------- */
     .rsvp {
-      margin-top: 60px;
+      background-color: transparent; /* Fondo transparente */
+      box-shadow: none; /* Sin sombra */
+      padding: 0;
+      margin-top: 80px; /* Espacio para separar de la sección anterior */
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .rsvp p {
+        color: #444;
+        margin-bottom: 40px;
     }
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
+    /* ---------------------------------------------------- */
+    /* DETALLE / REGALOS                                  */
+    /* ---------------------------------------------------- */
+    .detalle {
+      background-color: transparent; /* Fondo transparente */
+      box-shadow: none; /* Sin sombra */
+      padding: 0;
+      margin-top: 80px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .detalle p {
+        color: #444;
+        margin-bottom: 40px;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .regalos-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+      flex-wrap: wrap;
     }
 
-    @media (max-width: 600px) {
+    .gift-button {
+      background: none;
+      color: #87CEEB; /* Azul bebé para el texto del botón */
+      border: 3px solid #6A8DAB; /* Azul acento para el borde */
+      border-radius: 50px; /* Más redondeado */
+      padding: 18px 40px;
+      font-size: 20px;
+      font-family: 'Open Sans', sans-serif;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* Sombra muy sutil */
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 1.2px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .gift-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(135, 206, 235, 0.1); /* Fondo azul suave al hover */
+      border-radius: 50px;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .gift-button:hover::before {
+      opacity: 1;
+    }
+
+    .gift-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      color: #6A8DAB; /* Azul acento al pasar el ratón */
+    }
+
+    /* ---------------------------------------------------- */
+    /* ANIMACIONES                                        */
+    /* ---------------------------------------------------- */
+    @keyframes fadeInZoom {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes slideInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---------------------------------------------------- */
+    /* RESPONSIVIDAD                                      */
+    /* ---------------------------------------------------- */
+    @media (max-width: 992px) {
+      .hero h1 { font-size: 110px; }
+      .hero h2 { font-size: 44px; }
+      h3 { font-size: 40px; }
+      .countdown { font-size: 48px; padding: 20px 40px; }
+      .schedule li strong { font-size: 22px; }
+      .schedule li span { font-size: 44px; }
+      .main-button, .gift-button { font-size: 18px; padding: 15px 30px; }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 80px; }
+      .hero h2 { font-size: 36px; }
+      h3 { font-size: 34px; margin-bottom: 30px; }
+      p { font-size: 17px; margin-bottom: 20px; }
+      .countdown { font-size: 38px; padding: 15px 30px; }
+      
+      /* Ajuste de responsividad para horario */
+      .schedule ul {
+        flex-direction: column; /* Apilar en pantallas pequeñas */
+        align-items: center; /* Centrar al apilar */
+      }
+      .schedule li {
+        margin: 20px 0; /* Espacio vertical entre elementos apilados */
+        min-width: unset; /* Eliminar ancho mínimo */
+        max-width: 100%; /* Ocupar todo el ancho disponible */
+      }
+
+      /* Ajuste de responsividad para ubicaciones */
+      .maps .location-container {
+        flex-direction: column; /* Apilar en pantallas pequeñas */
+        align-items: center; /* Centrar al apilar */
+      }
+      .location-item {
+        min-width: unset; /* Eliminar ancho mínimo */
+        max-width: 100%; /* Ocupar todo el ancho disponible */
+        margin-bottom: 20px; /* Espacio entre elementos apilados */
+      }
+
+      .rsvp, .detalle { margin-top: 60px; }
+    }
+
+    @media (max-width: 480px) {
       .hero h1 { font-size: 60px; }
-      .hero h2 { font-size: 20px; }
+      .hero h2 { font-size: 28px; }
+      h3 { font-size: 28px; }
+      p { font-size: 16px; }
+      .countdown { font-size: 30px; padding: 10px 20px; }
+      .schedule li span { margin-right: 0; margin-bottom: 8px; }
+      .regalos-buttons { flex-direction: column; gap: 20px; }
+      .main-button, .gift-button { width: 90%; margin: 0 auto; display: block; }
     }
   </style>
 </head>
 <body>
+
   <section class="hero">
     <h1>Orlando & Eva</h1>
-    <h2>¡Nos casamos!</h2>
+    <h2>¡Nos Casamos!</h2>
   </section>
 
-  <section>
-    <blockquote>
-      “Todos somos mortales, hasta el primer beso y la segunda copa de vino”
-    </blockquote>
-    <div id="countdown"></div>
-  </section>
+  <div class="main-content">
+    <div class="container">
 
-  <section>
-    <h3>Detalles de la boda</h3>
-    <p><strong>Fecha:</strong> 21 de junio de 2025</p>
-    <p><strong>Lugar de la ceremonia:</strong> Iglesia de la Natividad de Nuestra Señora, Monreal del Campo</p>
-    <p><strong>Celebración:</strong> Huerta Molino Bajo</p>
-  </section>
+      <section>
+        <h3>El gran día se acerca...</h3>
+        <div id="countdown" class="countdown"></div>
+      </section>
 
-  <section>
-    <h3>Horario</h3>
-    <div class="schedule">
-      <ul>
-        <li><strong>12:30</strong> - Ceremonia religiosa</li>
-        <li><strong>14:00</strong> - Cóctel</li>
-        <li><strong>16:00</strong> - Comida</li>
-        <li><strong>18:00</strong> - Baile</li>
-      </ul>
-    </div>
-  </section>
+      <section class="schedule">
+        <h3>Nuestro Programa</h3>
+        <ul>
+          <li>
+            <span role="img" aria-label="Iglesia">⛪</span>
+            <strong>Ceremonia</strong>
+            <p>12:30 PM<br>Iglesia de la Monreal del Campo</p>
+          </li>
+          <li>
+            <span role="img" aria-label="Cena">🍽️</span>
+            <strong>Banquete</strong>
+            <p>14:00 PM<br>Huerta Molino Bajo</p>
+          </li>
+          <li>
+            <span role="img" aria-label="Fiesta">🎉</span>
+            <strong>Fiesta</strong>
+            <p>Después del banquete...<br>¡Hasta que el cuerpo aguante!</p>
+          </li>
+        </ul>
+      </section>
 
-  <section>
-    <h3>¿Cómo llegar?</h3>
-    <div class="maps-container">
-      <div class="map-item">
-        <p><strong>Iglesia de la Natividad</strong><br />Coordenadas: 40.790430, -1.353584</p>
-        <div id="map"></div>
-        <a href="https://maps.app.goo.gl/XnP5izdBn33TCUHt7" class="maps-button" target="_blank">Cómo llegar</a>
-      </div>
+      <section class="maps">
+        <h3>Cómo llegar</h3>
+        <div class="location-container"> <div class="location-item">
+              <p><strong>Ceremonia:</strong> Iglesia de Monreal del Campo</p>
+              <a class="main-button" href="https://www.google.com/maps/search/?api=1&query=Iglesia+de+la+Natividad,+Monreal+del+Campo" target="_blank">Ver en Google Maps</a>
+            </div>
+            <div class="location-item">
+              <p><strong>Banquete:</strong> Huerta Molino Bajo</p>
+              <a class="main-button" href="https://www.google.com/maps/search/?api=1&query=Huerta+Molino+Bajo,+Monreal+del+Campo" target="_blank">Ver en Google Maps</a>
+            </div>
+        </div>
+      </section>
 
-      <div class="map-item">
-        <p><strong>Huerta Molino Bajo</strong><br />Coordenadas: 40.794933, -1.347930</p>
-        <div id="map-ceremonia"></div>
-        <a href="https://maps.app.goo.gl/inCSUdQbwBgvyQ9HA" class="maps-button" target="_blank">Cómo llegar</a>
-      </div>
-    </div>
-  </section>
-  <!-- NUEVA SECCIÓN DEL REGALO -->
-  <section>
-    <h3>¿Un detalle?</h3>
-    <p style="max-width: 600px; margin: 0 auto 20px;">
-      Si te apetece tener un detalle con nosotros, puedes hacerlo escribiéndonos. 💌
-    </p>
-    <button onclick="window.location.href='https://wa.me/34XXXXXXXXX?text=Hola%2C+me+encantar%C3%ADa+tener+los+datos+para+el+regalo+de+la+boda+de+Orlando+y+Eva'" 
-            style="background-color: transparent; border: none; cursor: pointer;">
-      <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="#fff" viewBox="0 0 24 24">
-        <path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8h16Zm-6-4h5a1 1 0 0 1 1 1v3H4v-3a1 1 0 0 1 1-1h5a2.5 2.5 0 1 1 0-5c1.93 0 2.65 1.53 2.94 2.42.3-.89 1.01-2.42 2.94-2.42a2.5 2.5 0 1 1 0 5ZM9 3.5a1.5 1.5 0 0 0 0 3c.94 0 1.43-.6 2-2-.57-1.4-1.06-1-2-1Zm6 0c-.94 0-1.43.6-2 2 .57 1.4 1.06 1 2 1a1.5 1.5 0 0 0 0-3Z"/>
-      </svg>
-    </button>
-  </section>
-  <section class="rsvp">
-    <button onclick="window.location.href='https://forms.gle/YK35FJHhMhR1a8AJ8'">¡Confirma tu asistencia aquí!</button>
-  </section>
+      <section class="rsvp">
+        <h3>¡Queremos verte allí!</h3>
+        <p>Tu presencia es lo más importante para nosotros. Por favor, confírmanos tu asistencia.</p>
+        <button class="main-button" onclick="window.location.href='https://tu-formulario.com'">Confirmar Asistencia</button>
+      </section>
 
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script>
-    const countdownDate = new Date("Jun 21, 2025 12:00:00").getTime();
+      <section class="detalle">
+        <h3>¿Algún detalle?</h3>
+        <p>Si deseas tener un detalle con nosotros, aquí tienes nuestros contactos:</p>
+        <div class="regalos-buttons">
+          <button class="gift-button" onclick="window.open('https://wa.me/34660735617?text=¡Hola%20Eva!%20Quería%20tener%20un%20detalle%20contigo%20😊', '_blank')">
+            <span role="img" aria-label="Regalo">🎁</span> Contactar a Eva
+          </button>
+          <button class="gift-button" onclick="window.open('https://wa.me/34610302332?text=¡Hola%20Orlando!%20Quería%20tener%20un%20detalle%20contigo%20😊', '_blank')">
+            <span role="img" aria-label="Regalo">🎁</span> Contactar a Orlando
+          </button>
+        </div>
+      </section>
+
+    </div> </div> <script>
+    // Script para la cuenta atrás
+    const countdownDate = new Date("Jun 21, 2025 12:30:00").getTime(); // Cambia esta fecha a la de tu boda
     const countdownEl = document.getElementById("countdown");
-
     const x = setInterval(() => {
       const now = new Date().getTime();
       const distance = countdownDate - now;
-
       if (distance < 0) {
         clearInterval(x);
         countdownEl.innerHTML = "¡Es el gran día!";
         return;
       }
-
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
       countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }, 1000);
-
-    const map = L.map('map').setView([40.790430, -1.353584], 15);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-    L.marker([40.790430, -1.353584]).addTo(map).bindPopup("Iglesia de la Natividad");
-
-    const map2 = L.map('map-ceremonia').setView([40.794933, -1.347930], 15);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map2);
-    L.marker([40.794933, -1.347930]).addTo(map2).bindPopup("Huerta Molino Bajo");
   </script>
 </body>
 </html>
