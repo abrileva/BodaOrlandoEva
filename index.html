@@ -335,38 +335,41 @@
       .main-button, .gift-button { font-size: 18px; padding: 15px 30px; }
     }
 
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 80px; }
-      .hero h2 { font-size: 36px; }
-      h3 { font-size: 34px; margin-bottom: 30px; }
-      p { font-size: 17px; margin-bottom: 20px; }
-      .countdown { font-size: 38px; padding: 15px 30px; }
-      
-      /* Ajuste de responsividad para horario */
-      .schedule ul {
-        flex-direction: column; /* Apilar en pantallas pequeñas */
-        align-items: center; /* Centrar al apilar */
-      }
-      .schedule li {
-        margin: 20px 0; /* Espacio vertical entre elementos apilados */
-        min-width: unset; /* Eliminar ancho mínimo */
-        max-width: 100%; /* Ocupar todo el ancho disponible */
-      }
+  @media (max-width: 768px) {
+  .hero h1 { font-size: 80px; }
+  .hero h2 { font-size: 36px; }
+  h3 { font-size: 34px; margin-bottom: 30px; }
+  p { font-size: 17px; margin-bottom: 20px; }
+  .countdown { font-size: 38px; padding: 15px 30px; }
 
-      /* Ajuste de responsividad para ubicaciones */
-      .maps .location-container {
-        flex-direction: column; /* Apilar en pantallas pequeñas */
-        align-items: center; /* Centrar al apilar */
-      }
-      .location-item {
-        min-width: unset; /* Eliminar ancho mínimo */
-        max-width: 100%; /* Ocupar todo el ancho disponible */
-        margin-bottom: 20px; /* Espacio entre elementos apilados */
-      }
+  /* Ajuste de responsividad para horario */
+  .schedule ul {
+    flex-direction: column; /* Apilar en pantallas pequeñas */
+    align-items: center; /* Centrar al apilar */
+  }
+  .schedule li {
+    margin: 20px 0; /* Espacio vertical entre elementos apilados */
+    min-width: unset; /* Eliminar ancho mínimo */
+    max-width: 100%; /* Ocupar todo el ancho disponible */
+  }
 
-      .rsvp, .detalle { margin-top: 60px; }
-    }
+  /* Ajuste de responsividad para ubicaciones */
+  .maps .location-container {
+    flex-direction: column; /* Apilar en pantallas pequeñas */
+    align-items: center; /* Centrar al apilar */
+  }
+  .location-item {
+    min-width: unset; /* Eliminar ancho mínimo */
+    max-width: 100%; /* Ocupar todo el ancho disponible */
+    margin-bottom: 20px; /* Espacio entre elementos apilados */
+  }
 
+  .rsvp, .detalle { margin-top: 60px; }
+
+  body {
+      background-attachment: scroll; /* La imagen de fondo se moverá con el scroll */
+  }
+}
     @media (max-width: 480px) {
       .hero h1 { font-size: 60px; }
       .hero h2 { font-size: 28px; }
