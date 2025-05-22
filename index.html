@@ -377,6 +377,20 @@
       .regalos-buttons { flex-direction: column; gap: 20px; }
       .main-button, .gift-button { width: 90%; margin: 0 auto; display: block; }
     }
+
+    @media (max-width: 768px) {
+  body {
+    background-attachment: scroll; /* ✅ Evita errores de fondo en móviles */
+    background-size: cover;        /* Ya está, pero lo reiteramos por seguridad */
+    background-position: center center;
+  }
+
+  .hero {
+    background-attachment: scroll; /* También aplicar a la imagen de fondo del hero */
+    background-size: cover;
+    background-position: center center;
+  }
+}
   </style>
 </head>
 <body>
