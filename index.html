@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     /* ---------------------------------------------------- */
-    /* ESTILOS GENERALES Y RESETS                         */
+    /* ESTILOS GENERALES Y RESETS                           */
     /* ---------------------------------------------------- */
     * {
       box-sizing: border-box;
@@ -21,15 +21,15 @@
       line-height: 1.6;
       overflow-x: hidden; /* Evitar scroll horizontal */
 
-      /* ¡NUEVOS ESTILOS PARA LA IMAGEN DE FONDO DEL BODY! */
+      /* ¡IMAGEN DE FONDO DEL BODY: AJUSTADA PARA MÓVILES! */
       background-color: #f8f5f0; /* Fondo blanco roto base */
       background-image:
         linear-gradient(rgba(248, 245, 240, 0.9), rgba(248, 245, 240, 0.9)), /* Capa de color blanco roto con alta opacidad para "transparentar" la imagen */
         url('boda_festiva.jpg'); /* **RUTA A TU IMAGEN DE FONDO SUTIL** (florales, texturas, etc.) */
-      background-size: cover; /* Cubrir todo el fondo */
+      background-size: cover; /* ¡CLAVE! Cubrir todo el fondo, adaptándose al tamaño de la pantalla */
       background-position: center center; /* Centrar la imagen */
       background-repeat: no-repeat; /* No repetir la imagen */
-      background-attachment: fixed; /* Para que la imagen de fondo no se mueva con el scroll */
+      background-attachment: fixed; /* Para que la imagen de fondo no se mueva con el scroll (efecto parallax) */
     }
 
     .container {
@@ -39,7 +39,7 @@
     }
 
     /* ---------------------------------------------------- */
-    /* SECCIÓN PRINCIPAL (HERO)                           */
+    /* SECCIÓN PRINCIPAL (HERO)                             */
     /* ---------------------------------------------------- */
     .hero {
       height: 100vh; /* Ocupa toda la altura de la ventana */
@@ -51,8 +51,8 @@
       color: #fff; /* Texto blanco para resaltar sobre la imagen */
       background-image:
         linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1)), /* Sutil gradiente para oscurecer la imagen y mejorar la legibilidad */
-        url('imagenes/encabezado_minimalista.jpg'); /* **IMAGEN CLAVE: Fondo etéreo y luminoso para el HERO** */
-      background-size: cover;
+        url('encabezado_minimalista.jpg'); /* **IMAGEN CLAVE: Fondo etéreo y luminoso para el HERO** */
+      background-size: cover; /* Asegura que la imagen del hero también cubra todo el espacio */
       background-position: center;
       background-repeat: no-repeat;
       position: relative;
@@ -81,7 +81,7 @@
     }
 
     /* ---------------------------------------------------- */
-    /* SECCIONES DE CONTENIDO (FLUIDAS)                   */
+    /* SECCIONES DE CONTENIDO (FLUIDAS)                     */
     /* ---------------------------------------------------- */
     section {
       padding: 80px 0; /* Mayor espacio vertical entre secciones */
@@ -109,7 +109,7 @@
     }
 
     /* ---------------------------------------------------- */
-    /* CUENTA ATRÁS                                       */
+    /* CUENTA ATRÁS                                         */
     /* ---------------------------------------------------- */
     .countdown {
       font-family: 'Lora', serif;
@@ -133,7 +133,7 @@
     }
 
     /* ---------------------------------------------------- */
-    /* PROGRAMA DEL EVENTO (HORARIO) - ¡CAMBIO AQUÍ!     */
+    /* PROGRAMA DEL EVENTO (HORARIO) - ¡CAMBIO AQUÍ!        */
     /* ---------------------------------------------------- */
     .schedule ul {
       list-style: none;
@@ -172,7 +172,7 @@
     }
 
     /* ---------------------------------------------------- */
-    /* UBICACIONES (SIMPLIFICADAS) - ¡CAMBIO AQUÍ!      */
+    /* UBICACIONES (SIMPLIFICADAS) - ¡CAMBIO AQUÍ!          */
     /* ---------------------------------------------------- */
     .maps .location-container { /* Nuevo contenedor para Flexbox */
         display: flex;
@@ -225,7 +225,7 @@
     }
 
     /* ---------------------------------------------------- */
-    /* CONFIRMACIÓN DE ASISTENCIA (RSVP)                  */
+    /* CONFIRMACIÓN DE ASISTENCIA (RSVP)                    */
     /* ---------------------------------------------------- */
     .rsvp {
       background-color: transparent; /* Fondo transparente */
@@ -242,7 +242,7 @@
     }
 
     /* ---------------------------------------------------- */
-    /* DETALLE / REGALOS                                  */
+    /* DETALLE / REGALOS                                    */
     /* ---------------------------------------------------- */
     .detalle {
       background-color: transparent; /* Fondo transparente */
@@ -310,7 +310,7 @@
     }
 
     /* ---------------------------------------------------- */
-    /* ANIMACIONES                                        */
+    /* ANIMACIONES                                          */
     /* ---------------------------------------------------- */
     @keyframes fadeInZoom {
         from { opacity: 0; transform: scale(0.95); }
@@ -323,7 +323,7 @@
     }
 
     /* ---------------------------------------------------- */
-    /* RESPONSIVIDAD                                      */
+    /* RESPONSIVIDAD                                        */
     /* ---------------------------------------------------- */
     @media (max-width: 992px) {
       .hero h1 { font-size: 110px; }
@@ -335,41 +335,38 @@
       .main-button, .gift-button { font-size: 18px; padding: 15px 30px; }
     }
 
-  @media (max-width: 768px) {
-  .hero h1 { font-size: 80px; }
-  .hero h2 { font-size: 36px; }
-  h3 { font-size: 34px; margin-bottom: 30px; }
-  p { font-size: 17px; margin-bottom: 20px; }
-  .countdown { font-size: 38px; padding: 15px 30px; }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 80px; }
+      .hero h2 { font-size: 36px; }
+      h3 { font-size: 34px; margin-bottom: 30px; }
+      p { font-size: 17px; margin-bottom: 20px; }
+      .countdown { font-size: 38px; padding: 15px 30px; }
+      
+      /* Ajuste de responsividad para horario */
+      .schedule ul {
+        flex-direction: column; /* Apilar en pantallas pequeñas */
+        align-items: center; /* Centrar al apilar */
+      }
+      .schedule li {
+        margin: 20px 0; /* Espacio vertical entre elementos apilados */
+        min-width: unset; /* Eliminar ancho mínimo */
+        max-width: 100%; /* Ocupar todo el ancho disponible */
+      }
 
-  /* Ajuste de responsividad para horario */
-  .schedule ul {
-    flex-direction: column; /* Apilar en pantallas pequeñas */
-    align-items: center; /* Centrar al apilar */
-  }
-  .schedule li {
-    margin: 20px 0; /* Espacio vertical entre elementos apilados */
-    min-width: unset; /* Eliminar ancho mínimo */
-    max-width: 100%; /* Ocupar todo el ancho disponible */
-  }
+      /* Ajuste de responsividad para ubicaciones */
+      .maps .location-container {
+        flex-direction: column; /* Apilar en pantallas pequeñas */
+        align-items: center; /* Centrar al apilar */
+      }
+      .location-item {
+        min-width: unset; /* Eliminar ancho mínimo */
+        max-width: 100%; /* Ocupar todo el ancho disponible */
+        margin-bottom: 20px; /* Espacio entre elementos apilados */
+      }
 
-  /* Ajuste de responsividad para ubicaciones */
-  .maps .location-container {
-    flex-direction: column; /* Apilar en pantallas pequeñas */
-    align-items: center; /* Centrar al apilar */
-  }
-  .location-item {
-    min-width: unset; /* Eliminar ancho mínimo */
-    max-width: 100%; /* Ocupar todo el ancho disponible */
-    margin-bottom: 20px; /* Espacio entre elementos apilados */
-  }
+      .rsvp, .detalle { margin-top: 60px; }
+    }
 
-  .rsvp, .detalle { margin-top: 60px; }
-
-  body {
-      background-attachment: scroll; /* La imagen de fondo se moverá con el scroll */
-  }
-}
     @media (max-width: 480px) {
       .hero h1 { font-size: 60px; }
       .hero h2 { font-size: 28px; }
@@ -403,7 +400,7 @@
           <li>
             <span role="img" aria-label="Iglesia">⛪</span>
             <strong>Ceremonia</strong>
-            <p>12:30 PM<br>Iglesia de la Monreal del Campo</p>
+            <p>12:30 PM<br>Iglesia de Monreal del Campo</p>
           </li>
           <li>
             <span role="img" aria-label="Cena">🍽️</span>
@@ -422,11 +419,11 @@
         <h3>Cómo llegar</h3>
         <div class="location-container"> <div class="location-item">
               <p><strong>Ceremonia:</strong> Iglesia de Monreal del Campo</p>
-              <a class="main-button" href="https://www.google.com/maps/search/?api=1&query=Iglesia+de+la+Natividad,+Monreal+del+Campo" target="_blank">Ver en Google Maps</a>
+              <a class="main-button" href="https://www.google.com/maps/search/?api=1&query=Iglesia+de+la+Monreal+del+Campo" target="_blank">Ver en Google Maps</a>
             </div>
             <div class="location-item">
               <p><strong>Banquete:</strong> Huerta Molino Bajo</p>
-              <a class="main-button" href="https://www.google.com/maps/search/?api=1&query=Huerta+Molino+Bajo,+Monreal+del+Campo" target="_blank">Ver en Google Maps</a>
+              <a class="main-button" href="https://www.google.com/maps/search/?api=1&query=Huerta+Molino+Bajo" target="_blank">Ver en Google Maps</a>
             </div>
         </div>
       </section>
@@ -434,7 +431,7 @@
       <section class="rsvp">
         <h3>¡Queremos verte allí!</h3>
         <p>Tu presencia es lo más importante para nosotros. Por favor, confírmanos tu asistencia.</p>
-        <button class="main-button" onclick="window.location.href='https://tu-formulario.com'">Confirmar Asistencia</button>
+        <button class="main-button" onclick="window.location.href='https://forms.gle/8rYpmos8gRhkgtjR7'">Confirmar Asistencia</button>
       </section>
 
       <section class="detalle">
