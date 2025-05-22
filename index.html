@@ -19,7 +19,7 @@
       font-family: 'Open Sans', sans-serif;
       color: #222; /* Texto principal en un negro suave */
       line-height: 1.6;
-      overflow-x: hidden; /* Evitar scroll horizontal */
+     
 
       /* ¡IMAGEN DE FONDO DEL BODY: AJUSTADA PARA MÓVILES! */
       background-color: #f8f5f0; /* Fondo blanco roto base */
@@ -42,7 +42,8 @@
     /* SECCIÓN PRINCIPAL (HERO)                             */
     /* ---------------------------------------------------- */
     .hero {
-      height: 100vh; /* Ocupa toda la altura de la ventana */
+      min-height: 100dvh; /* Ocupa toda la altura de la ventana */
+      height: auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -380,13 +381,13 @@
 
     @media (max-width: 768px) {
   body {
-    background-attachment: scroll; /* ✅ Evita errores de fondo en móviles */
+    
     background-size: cover;        /* Ya está, pero lo reiteramos por seguridad */
     background-position: center center;
   }
 
   .hero {
-    background-attachment: scroll; /* También aplicar a la imagen de fondo del hero */
+   
     background-size: cover;
     background-position: center center;
   }
@@ -437,7 +438,7 @@
             </div>
             <div class="location-item">
               <p><strong>Banquete:</strong> Huerta Molino Bajo</p>
-              <a class="main-button" href="https://www.google.com/maps/search/?api=1&query=Huerta+Molino+Bajo" target="_blank">Ver en Google Maps</a>
+              <a class="main-button" href="https://maps.app.goo.gl/gdTbpdS6cwJXG9F46" target="_blank">Ver en Google Maps</a>
             </div>
         </div>
       </section>
