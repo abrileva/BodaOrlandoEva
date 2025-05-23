@@ -27,7 +27,7 @@
         linear-gradient(rgba(248, 245, 240, 0.9), rgba(248, 245, 240, 0.9)), /* Capa de color blanco roto con alta opacidad para "transparentar" la imagen */
         url('boda_festiva1.jpg'); /* **RUTA A TU IMAGEN DE FONDO SUTIL** (florales, texturas, etc.) */
       background-size: cover; /* ¡CLAVE! Cubrir todo el fondo, adaptándose al tamaño de la pantalla */
-      background-position: center center; /* Centrar la imagen */
+      background-position: top center; /* Centrar la imagen */
       background-repeat: no-repeat; /* No repetir la imagen */
     
     }
@@ -378,12 +378,18 @@
       .regalos-buttons { flex-direction: column; gap: 20px; }
       .main-button, .gift-button { width: 90%; margin: 0 auto; display: block; }
     }
-
+@media (max-width: 768px) {
+  .hero {
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1)),
+      url('boda_festiva1.jpg');
+  }
+}
     @media (max-width: 768px) {
   body {
     
     background-size: cover;        /* Ya está, pero lo reiteramos por seguridad */
-    background-position: center center;
+    background-position: top center;
   }
 
   .hero {
