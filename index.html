@@ -377,18 +377,16 @@
       .main-button, .gift-button { width: 90%; margin: 0 auto; display: block; }
     }
 @media (max-width: 768px) {
-  .body {
+  body {
     background-image:
       linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1)),
       url('boda_festiva1.jpg');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: scroll; /* o fixed, según el efecto que desees */
   }
 }
-    @media (max-width: 768px) {
-  body {
-    
-    background-size: cover;        /* Ya está, pero lo reiteramos por seguridad */
-    background-position: top center;
-  }
 
   .hero {
    
