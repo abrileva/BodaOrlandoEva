@@ -379,12 +379,13 @@
 @media (max-width: 768px) {
   body {
     background-image:
-      linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1)),
-      url('boda_festiva1.jpg');
-    background-size: cover;
-    background-position: top center;
+      linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)), /* transparencia más visible */
+      url('boda_festiva2.jpg');
+
+    background-size: cover;          /* se adapta al tamaño */
+    background-position: center top; /* centrado arriba */
     background-repeat: no-repeat;
-    background-attachment: scroll; /* o fixed, según el efecto que desees */
+    background-attachment: scroll;   /* evita problemas con fixed en móvil */
   }
 }
 
