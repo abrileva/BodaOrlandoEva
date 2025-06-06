@@ -321,84 +321,101 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ---------------------------------------------------- */
-    /* RESPONSIVIDAD                                        */
-    /* ---------------------------------------------------- */
-    @media (max-width: 992px) {
-      .hero h1 { font-size: 110px; }
-      .hero h2 { font-size: 44px; }
-      h3 { font-size: 40px; }
-      .countdown { font-size: 48px; padding: 20px 40px; }
-      .schedule li strong { font-size: 22px; }
-      .schedule li span { font-size: 44px; }
-      .main-button, .gift-button { font-size: 18px; padding: 15px 30px; }
+  /* ---------------------------------------------------- */
+/* RESPONSIVIDAD                                        */
+/* ---------------------------------------------------- */
 
-      body {
+@media (max-width: 992px) {
+  .hero h1 { font-size: 110px; }
+  .hero h2 { font-size: 44px; }
+  h3 { font-size: 40px; }
+  .countdown { font-size: 48px; padding: 20px 40px; }
+  .schedule li strong { font-size: 22px; }
+  .schedule li span { font-size: 44px; }
+  .main-button, .gift-button { font-size: 18px; padding: 15px 30px; }
+
+  body {
     background-image:
-      linear-gradient(rgba(248, 245, 240, 0.9), rgba(248, 245, 240, 0.9)), /* Un gradiente de opacidad para que la imagen no pierda claridad */
-      url('boda_festiva2.jpg'); /* Imagen alternativa para móviles (puedes cambiarla o dejarla igual) */
-    background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
-    background-position: center top; /* Centra la imagen hacia la parte superior */
+      linear-gradient(rgba(248, 245, 240, 0.9), rgba(248, 245, 240, 0.9)),
+      url('boda_festiva2.jpg');
+    background-size: cover;
+    background-position: center top;
     background-repeat: no-repeat;
-    background-attachment: scroll; /* Evita problemas con el parallax en móviles */
+    background-attachment: scroll;
   }
-    }
 
- @media (max-width: 768px) {
+  .hero {
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)),
+      url('boda_festiva2.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+  }
+}
+
+@media (max-width: 768px) {
   .hero h1 { font-size: 80px; }
   .hero h2 { font-size: 36px; }
   h3 { font-size: 34px; margin-bottom: 30px; }
   p { font-size: 17px; margin-bottom: 20px; }
   .countdown { font-size: 38px; padding: 15px 30px; }
+
   body {
     background-image:
       linear-gradient(rgba(248, 245, 240, 0.9), rgba(248, 245, 240, 0.9)),
-  url('boda_festiva2.jpg');; /* Imagen alternativa para móviles (puedes cambiarla o dejarla igual) */
-    background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
-    background-position: center top; /* Centra la imagen hacia la parte superior */
-    background-repeat: no-repeat;
-    background-attachment: scroll; /* Evita problemas con el parallax en móviles */
-  }
-  /* Ajuste de responsividad para horario */
-  .schedule ul {
-    flex-direction: column; /* Apilar en pantallas pequeñas */
-    align-items: center; /* Centrar al apilar */
-  }
-  .schedule li {
-    margin: 20px 0; /* Espacio vertical entre elementos apilados */
-    min-width: unset; /* Eliminar ancho mínimo */
-    max-width: 100%; /* Ocupar todo el ancho disponible */
-  }
-
-  /* Ajuste de responsividad para ubicaciones */
-  .maps .location-container {
-    flex-direction: column; /* Apilar en pantallas pequeñas */
-    align-items: center; /* Centrar al apilar */
-  }
-  .location-item {
-    min-width: unset; /* Eliminar ancho mínimo */
-    max-width: 100%; /* Ocupar todo el ancho disponible */
-    margin-bottom: 20px; /* Espacio entre elementos apilados */
-  }
-
-  .rsvp, .detalle { margin-top: 60px; }
-
-  body {
-    background-image:
-      linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)), /* transparencia más visible */
       url('boda_festiva2.jpg');
-
-    background-size: cover;          /* se adapta al tamaño */
-    background-position: center top; /* centrado arriba */
+    background-size: cover;
+    background-position: center top;
     background-repeat: no-repeat;
-    background-attachment: scroll;   /* evita problemas con fixed en móvil */
+    background-attachment: scroll;
   }
 
   .hero {
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)),
+      url('boda_festiva2.jpg');
     background-size: cover;
     background-position: center center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+  }
+
+  /* Horario responsivo */
+  .schedule ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .schedule li {
+    margin: 20px 0;
+    min-width: unset;
+    max-width: 100%;
+  }
+
+  /* Ubicaciones responsivas */
+  .maps .location-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .location-item {
+    min-width: unset;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .rsvp, .detalle {
+    margin-top: 60px;
+  }
+
+  .regalos-buttons {
+    flex-direction: column;
+    gap: 20px;
   }
 }
+
 @media (max-width: 480px) {
   .hero h1 { font-size: 60px; }
   .hero h2 { font-size: 28px; }
@@ -406,8 +423,11 @@
   p { font-size: 16px; }
   .countdown { font-size: 30px; padding: 10px 20px; }
   .schedule li span { margin-right: 0; margin-bottom: 8px; }
-  .regalos-buttons { flex-direction: column; gap: 20px; }
-  .main-button, .gift-button { width: 90%; margin: 0 auto; display: block; }
+  .main-button, .gift-button {
+    width: 90%;
+    margin: 0 auto;
+    display: block;
+  }
 }
   </style>
 </head>
@@ -415,7 +435,6 @@
 
   <section class="hero">
     <h1>Orlando & Eva</h1>
-    <h2>¡Nos Casamos!</h2>
   </section>
 
   <div class="main-content">
